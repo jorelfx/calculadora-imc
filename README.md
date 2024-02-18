@@ -3,7 +3,9 @@ Desc
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
-Screenshots
+
+<img src = "https://github.com/ComunidadeDevSpace/calculadoraimc/assets/11612508/e857df4c-f347-4228-ac58-29608a918c90" width = 260/>
+<img src = "https://github.com/ComunidadeDevSpace/calculadoraimc/assets/11612508/c00c216d-932f-4c99-af8d-2864eda7ddc8" width = 260/>
 
 ## Tecnologias
 Techs
