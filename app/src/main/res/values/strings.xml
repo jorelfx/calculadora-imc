@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">calculadoraimc</string>
+    <string name="calculadora_imc">Calculadora IMC</string>
+    <string name="preencha_os_campos">Preencha os campos com seu peso e altura para calcular seu indice de massa corporal</string>
+    <string name="digite_seu_peso">Digite seu peso ex: 70.200</string>
+    <string name="digite_sua_altura">Digite sua altura ex: 1.70</string>
 </resources>
