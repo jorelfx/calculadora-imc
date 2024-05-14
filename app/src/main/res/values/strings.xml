@@ -4,4 +4,6 @@
     <string name="preencha_os_campos">Preencha os campos com seu peso e altura para calcular seu indice de massa corporal</string>
     <string name="digite_seu_peso">Digite seu peso ex: 70.200</string>
     <string name="digite_sua_altura">Digite sua altura ex: 1.70</string>
+    <string name="classificacao_imc">A classificacao do seu IMC e:</string>
+    <string name="confira_o_resultado">Confira abaixo o resultado do IMC e a classificao</string>
 </resources>

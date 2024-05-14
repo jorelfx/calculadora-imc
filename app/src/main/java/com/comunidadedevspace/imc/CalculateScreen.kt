@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -21,28 +20,29 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun CalculateScreen() {
+fun CalculateScreen(
+    navController: NavController
+) {
 
     val weight = remember { mutableStateOf("") }
     val height = remember { mutableStateOf("") }
-    var result = remember { mutableFloatStateOf(0f) }
+    val showError = remember { mutableStateOf(false) }
 
     Surface {
         Box(
@@ -70,7 +70,7 @@ fun CalculateScreen() {
                 hint = stringResource(id = R.string.digite_seu_peso),
                 icon = R.drawable.ic_weight
             ) {
-                weight.value = it
+                weight.value = it.replace(',', '.')
             }
             IMCInput(
                 modifier = Modifier
@@ -82,80 +82,48 @@ fun CalculateScreen() {
                 hint = stringResource(id = R.string.digite_sua_altura),
                 icon = R.drawable.ic_height
             ) {
-                height.value = it
+                height.value = it.replace(',', '.')
+            }
+            if(showError.value) {
+                Text(
+                    text = stringResource(id = R.string.preencha_os_campos),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = 12.dp,
+                            start = 24.dp,
+                            end = 16.dp
+                        ),
+                    color = Color.Red,
+                    fontSize = 12.sp
+                )
             }
             Spacer(modifier = Modifier.weight(1f))
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.BottomCenter
             ) {
-                Button(modifier = Modifier
+                Button(
+                    modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Primary400
                     ),
                     onClick = {
+                        showError.value = height.value.isEmpty() && weight.value.isEmpty()
+
                         val weightValue = weight.value.toFloatOrNull() ?: 0f
                         val heightValue = height.value.toFloatOrNull() ?: 0f
-                        result.floatValue  = weightValue / (heightValue * heightValue)
+                        val result  = weightValue / (heightValue * heightValue)
+                        if(!showError.value) {
+                            navController.navigate("${MyRoutes.RESULT_SCREEN}/$result")
+                        }
                     }
                 ) {
                     Text(text = "Calcular")
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun TopCard(
-    title: String,
-    description: String,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Primary900,
-                        Primary400
-                    )
-                ),
-                shape = RoundedCornerShape(16.dp)
-            )
-    ) {
-        Column {
-            Icon(
-                modifier = modifier
-                    .padding(
-                        start = 16.dp,
-                        top = 48.dp
-                    )
-                    .size(32.dp),
-                painter = painterResource(R.drawable.ic_weight),
-                contentDescription = "Weight Icon",
-                tint = Color.White
-            )
-            Text(
-                modifier = modifier.padding(16.dp),
-                text = title,
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-                color = Color.White
-            )
-            Text(
-                modifier = modifier.padding(
-                    start = 16.dp,
-                    end = 16.dp,
-                    bottom = 48.dp
-                ),
-                text = description,
-                color = Color.White,
-                fontSize = 14.sp
-            )
         }
     }
 }
@@ -200,6 +168,6 @@ fun IMCInput(
 @Preview
 fun CalculateScreenPreview() {
     IMCTheme {
-        CalculateScreen()
+        CalculateScreen(rememberNavController())
     }
 }
