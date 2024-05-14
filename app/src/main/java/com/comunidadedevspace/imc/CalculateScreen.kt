@@ -152,7 +152,7 @@ fun IMCInput(
             unfocusedIndicatorColor = Color.Transparent
         ),
         keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Password
+            keyboardType = KeyboardType.Number
         ),
         shape = RoundedCornerShape(50),
         trailingIcon = {
