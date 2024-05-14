@@ -21,6 +21,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -41,10 +42,12 @@ fun CalculateScreen() {
 
     val weight = remember { mutableStateOf("") }
     val height = remember { mutableStateOf("") }
+    var result = remember { mutableFloatStateOf(0f) }
 
     Surface {
         Box(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(20.dp)
                 .background(Primary900)
         ) {}
@@ -92,7 +95,11 @@ fun CalculateScreen() {
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Primary400
                     ),
-                    onClick = {}
+                    onClick = {
+                        val weightValue = weight.value.toFloatOrNull() ?: 0f
+                        val heightValue = height.value.toFloatOrNull() ?: 0f
+                        result.floatValue  = weightValue / (heightValue * heightValue)
+                    }
                 ) {
                     Text(text = "Calcular")
                 }
