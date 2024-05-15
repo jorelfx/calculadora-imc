@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContent {
             IMCTheme {
-                AppNavigator(initialScreen = "calculate_screen")
+                AppNavigator(initialScreen = MyRoutes.CALCULATE_SCREEN)
             }
         }
     }
