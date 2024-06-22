@@ -21,7 +21,7 @@ class ResultActivity : AppCompatActivity() {
         tvresult.text = result.toString()
 
         var classificacao : String = null.toString()
-            if (result <= 18.5f)
+        if (result <= 18.5f)
         { classificacao = "MAGRO"
     } else if (result > 18.5f && result <= 24.9f) {classificacao =
              "NORMAL"
