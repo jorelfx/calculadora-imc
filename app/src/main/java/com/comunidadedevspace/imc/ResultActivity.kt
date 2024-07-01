@@ -2,10 +2,8 @@ package com.comunidadedevspace.imc
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat
 
 const val KEY_RESULT_IMC = "ResultActivity.KEY_IMC"
 
@@ -20,23 +18,63 @@ class ResultActivity : AppCompatActivity() {
         val tvclassificacao = findViewById<TextView>(R.id.tv_classificacao)
         tvresult.text = result.toString()
 
-        var classificacao : String = null.toString()
-        if (result <= 18.5f)
-        { classificacao = "MAGRO"
-    } else if (result > 18.5f && result <= 24.9f) {classificacao =
-             "NORMAL"
-    } else if (result > 25f && result <= 29.9f) {classificacao =
-             "SOBREPESO"
-    } else if (result > 30f && result <= 39.9f) {classificacao = "OBESIDADE"
+        val (classification: String, color: Int) = when {
+            result <= 18.5f -> {
+                "MAGRO" to R.color.MAGRO
+            }
 
-    } else if (result > 40f) { classificacao="OBESIDADE GRAVE"
+            result > 18.5f && result <= 24.9f -> {
+                "NORMAL" to R.color.NORMAL
+            }
 
-    }
-
-        tvclassificacao.text = (classificacao)
+            result > 25f && result <= 29.9f -> {
+                "SOBREPESO" to R.color.SOBREPESO
+            }
 
 
+            result > 30f && result <= 39.9f -> {
+                "OBESIDADE" to R.color.OBESIDADE
+            }
 
+            else -> {
+                "OBESIDADE GRAVE" to R.color.OBESIDADE_GRAVE
+            }
 
         }
-    }
+
+        tvclassificacao.setTextColor(ContextCompat.getColor(this, color))
+        tvclassificacao.text = classification
+
+    }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
