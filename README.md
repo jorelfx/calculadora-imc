@@ -1,19 +1,34 @@
 # Calculadora IMC
-Desc
+Esse projeto é um aplicativo android nativo desenvolvido com a linguagem de programação Kotlin, tem como principal funcionalidade fazer o calculo do IMC e mostrar o resultado na tela seguinte.
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
-Screenshots
+<img src="https://github.com/wil335/calculadoraimc/assets/172319481/ec7a4070-697b-4269-bb21-94bbb5efa487" width=260/> <img src="https://github.com/wil335/calculadoraimc/assets/172319481/70a365ff-1adc-45e9-90c5-c385f87b7b65" width=260/>
+
+
+
+
 
 ## Tecnologias
-Techs
+- Activity
+- Intent
+- Snackbar
+- ViewGroups
+  -  LinearLayout
+  -  ConstraintLayout
+- Views
+  - TextView
+  - ImageView
+  - EditText
+  - Button
+  
 
 
 ## License
 ```
 The MIT License (MIT)
 
-Copyright (c) 2023 Roque Buarque Junior
+Copyright (c) 2024 Willian Vieira
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
