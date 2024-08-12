@@ -13,12 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // recuperar os componentes EditText
-        // criar uma variavel e recuperar um componente de UI<EditText>
-        // recuperar o Button
-        // colocar ação no botão setOnClickListener
-        // recuperar o texto digitado no edtPeso
-
         val edtPeso = findViewById<TextInputEditText>(R.id.edt_peso)
         val edtAltura = findViewById<TextInputEditText>(R.id.edt_altura)
 
@@ -45,11 +39,6 @@ class MainActivity : AppCompatActivity() {
              val alturaQ2 = altura * altura
              val resultado = peso / alturaQ2
 
-            // NAVEGAR PARA A PROXIMA TELA
-            // CRIAR O LAYOUT DA PROXIMA TELA
-            // PASSAR DADOS (RESULT) PARA A PROXIMA TELA
-
-            // para chamar a proxima tela vamos utilizar o Intent - classe do próprio android
 
              val intent = Intent (this, ResultActivity::class.java)
               intent.putExtra("KEY_IMC",resultado)
@@ -57,9 +46,6 @@ class MainActivity : AppCompatActivity() {
 
              println("Jorel ação do botão" + resultado)
 
-            //Cores
-            //EditText Bakground
-            //Gradiente + icone + titulo + descrição
 
             }
         }
